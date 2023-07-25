@@ -3,6 +3,7 @@
 import { signIn, getProviders, useSession, signOut } from 'next-auth/react'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { Button } from '@mui/material'
 
 export default function Home() {
   const { data: session } = useSession()
@@ -24,22 +25,18 @@ export default function Home() {
       {providers && !session &&
         (
           <>
-            <button
-              type="button"
-              key={providers.google.name}
+            <Button
+              variant="contained"
               onClick={() => signIn(providers.google.id)}
-              className="mx-10"
             >
               Sign In with google
-            </button>
-            <button
-              type="button"
-              key={providers.facebook.name}
+            </Button>
+            <Button
+              variant="contained"
               onClick={() => signIn(providers.facebook.id)}
-              className="mx-10"
             >
               Sign In with facebook
-            </button>
+            </Button>
           </>
         )}
 
@@ -53,10 +50,10 @@ export default function Home() {
         Sign Out
       </button>}
 
-      <Image src={session?.user?.image} alt=""
+      {session?.user && <Image src={session?.user?.image} alt=""
         width={50}
         height={50}
-      />
+      />}
     </>
   )
 }
