@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <>
-      {providers && !session &&
+      {/* {providers && !session &&
         (
           <>
             <Button
@@ -53,7 +53,7 @@ export default function Home() {
       {session?.user && <Image src={session?.user?.image} alt=""
         width={50}
         height={50}
-      />}
+      />} */}
     </>
   )
 }
