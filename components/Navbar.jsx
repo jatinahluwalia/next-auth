@@ -8,9 +8,11 @@ import Image from "next/image";
 import { Dialog, DialogTitle } from "@mui/material";
 
 const Navbar = () => {
-    const session = useSession()
+    const { data: session } = useSession()
     const [providers, setProviders] = useState(null)
     const [open, setOpen] = useState(false)
+
+    console.log(session);
     useEffect(() => {
         const getProvider = async () => {
             const res = await getProviders()
@@ -19,21 +21,21 @@ const Navbar = () => {
         getProvider()
     }, [])
     return (
-        <nav className="flex justify-between items-center mx-auto max-w-[1200px] h-24">
+        <nav className="flex justify-between items-center mx-auto max-w-[1200px] h-16">
             <h1 className=" text-3xl">JITU</h1>
 
-            {session.user ? (
+            {session ? (
                 <div className="flex items-center gap-5">
                     <Image
                         src={session?.user?.image}
-                        width={20}
-                        height={20}
-                        className="rounder-full"
+                        width={40}
+                        height={40}
+                        className="rounded-full border-[1px] border-black"
                         alt={session?.user?.name}
                     />
                     <button
                         type="button"
-                        className="rounded-xl px-8 py-4 bg-black text-white"
+                        className="rounded-full px-4 py-2 bg-black text-white hover:bg-white hover:text-black transition-all"
                         onClick={() => {
                             signOut()
                         }}
@@ -45,7 +47,7 @@ const Navbar = () => {
                 providers && <div>
                     <button
                         type="button"
-                        className="rounded-xl px-8 py-4 bg-black text-white"
+                        className="rounded-full px-4 py-2 bg-black text-white hover:bg-white hover:text-black transition-all"
                         onClick={() => {
                             setOpen(true)
                         }}
@@ -57,7 +59,7 @@ const Navbar = () => {
                         <div className="flex flex-col gap-2 p-5">
                             <button
                                 type="button"
-                                className="flex gap-3 items-center border-2 border-black p-5 rounded-md hover:bg-gray-50"
+                                className="flex gap-3 items-center border-2 border-black p-5 rounded-full hover:bg-gray-50"
                                 onClick={() => signIn(providers.google.id)}
                                 key={providers.google.name}
                             >
@@ -66,7 +68,7 @@ const Navbar = () => {
                             </button>
                             <button
                                 type="button"
-                                className="flex gap-3 items-center border-2 border-black p-5 rounded-md hover:bg-gray-50"
+                                className="flex gap-3 items-center border-2 border-black p-5 rounded-full hover:bg-gray-50"
                                 onClick={() => signIn(providers.facebook.id)}
                                 key={providers.facebook.name}
                             >

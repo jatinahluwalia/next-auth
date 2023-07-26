@@ -12,14 +12,6 @@ const handler = NextAuth({
         clientSecret: process.env.FACEBOOK_CLIENT_SECRET
     })
     ],
-    callbacks: {
-        async session({ session }) {
-
-        },
-        async signIn({ profile }) {
-
-        }
-    }
 })
 
 export { handler as GET, handler as POST }
