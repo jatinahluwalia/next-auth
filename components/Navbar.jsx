@@ -12,16 +12,16 @@ const Navbar = () => {
     const [providers, setProviders] = useState(null)
     const [open, setOpen] = useState(false)
 
-    console.log(session);
     useEffect(() => {
         const getProvider = async () => {
             const res = await getProviders()
             setProviders(res)
+            console.log(res);
         }
         getProvider()
     }, [])
     return (
-        <nav className="flex justify-between items-center mx-auto max-w-[1200px] h-16">
+        <nav className="flex justify-between items-center mx-auto max-w-[1200px] h-16 px-2">
             <h1 className=" text-3xl">JITU</h1>
 
             {session ? (
